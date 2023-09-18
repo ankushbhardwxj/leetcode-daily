@@ -1,0 +1,16 @@
+{
+  "name": "lc",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "node-cron": "^3.0.2",
+    "resend": "^1.0.0"
+  },
+  "scripts": {
+    "send-mail": "npx ts-node src/index.ts"
+  },
+  "devDependencies": {
+    "@types/node-cron": "^3.0.8"
+  }
+}
