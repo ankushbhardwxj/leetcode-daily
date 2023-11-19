@@ -45,7 +45,6 @@ export default function getTodayRevisionQuestions() {
   questionObjects = questionObjects.filter(
     (question) => question !== undefined
   );
-  console.log(questionObjects);
   return questionObjects;
 }
 
