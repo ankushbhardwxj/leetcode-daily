@@ -5,13 +5,16 @@
   "license": "MIT",
   "dependencies": {
     "@react-email/components": "^0.0.11",
+    "dotenv": "^16.3.1",
     "node-cron": "^3.0.2",
     "resend": "^1.0.0"
   },
   "scripts": {
-    "send-mail": "npx ts-node src/index.ts"
+    "send-mail": "npx ts-node src/index.ts",
+    "send-mail-cli": "EXEC=CLI npx ts-node src/index.ts"
   },
   "devDependencies": {
+    "@types/node": "^20.11.0",
     "@types/node-cron": "^3.0.8",
     "typescript": "^5.2.2"
   }

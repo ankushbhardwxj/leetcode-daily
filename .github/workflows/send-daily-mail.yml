@@ -1,0 +1,27 @@
+name: Send Daily Mail
+
+on:
+  schedule:
+    - cron: "0 5 * * *"
+
+jobs:
+  health-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node
+        uses: action/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install Dependencies
+        run: |
+          npm install -g yarn
+          yarn install
+
+      - name: Run daily mail command
+        run: |
+          yarn run send-mail-cli

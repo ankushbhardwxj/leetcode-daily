@@ -5,11 +5,19 @@ import getTodayRevisionQuestions from "./services/get-today-revision-questions";
 import cron from "node-cron";
 import http from "http";
 
-cron.schedule("0 5 * * *", async () => {
+async function sendMail() {
   const mailingList = getMailingList();
   const questions = getTodayQuestions();
   const revisionQuestions = getTodayRevisionQuestions();
   await sendResendEmail(mailingList, questions, revisionQuestions);
+}
+
+if (process.env.EXEC === "CLI") {
+  sendMail();
+}
+
+cron.schedule("0 5 * * *", async () => {
+  await sendMail();
 });
 
 const server = http.createServer((req, res) =>
