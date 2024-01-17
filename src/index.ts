@@ -16,16 +16,18 @@ if (process.env.EXEC === "CLI") {
   sendMail();
 }
 
-cron.schedule("0 5 * * *", async () => {
-  await sendMail();
-});
+if (process.env.EXEC !== "CLI") {
+  cron.schedule("0 5 * * *", async () => {
+    await sendMail();
+  });
 
-const server = http.createServer((req, res) =>
-  req.url === "/health"
-    ? res.end(JSON.stringify({ status: "ok" }))
-    : res.end("Not Found")
-);
+  const server = http.createServer((req, res) =>
+    req.url === "/health"
+      ? res.end(JSON.stringify({ status: "ok" }))
+      : res.end("Not Found")
+  );
 
-server.listen(3000, () =>
-  console.log("Server running on http://localhost:3000")
-);
+  server.listen(3000, () =>
+    console.log("Server running on http://localhost:3000")
+  );
+}
